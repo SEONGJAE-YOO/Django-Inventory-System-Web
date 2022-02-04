@@ -4,7 +4,14 @@ from django.shortcuts import render
 from django.http import HttpResponse
 
 def index(request):
-    return HttpResponse('메인 페이지')
-
+    #return HttpResponse('<h1> 메인 페이지 </h1>')
+    return render(request, '') 
+    
+    '''
+    예시)
+     return render(request, 'polls/index.html', context) 
+     render() 함수는 request 객체를 첫번째 인수로 받고, 템플릿 이름을 두번째 인수로 받으며, context 사전형 객체를 세전째 선택적(optional) 인수로 받습니다. 인수로 지정된 context로 표현된 템플릿의 HttpResponse 객체가 반환됩니다.
+    '''
 def staff(request):
-    return HttpResponse('관리자 페이지')
+    #return HttpResponse('관리자 페이지')
+    return render(request, '')
