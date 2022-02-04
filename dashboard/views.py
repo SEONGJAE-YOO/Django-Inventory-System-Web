@@ -6,3 +6,5 @@ from django.http import HttpResponse
 def index(request):
     return HttpResponse('메인 페이지')
 
+def staff(request):
+    return HttpResponse('관리자 페이지')
