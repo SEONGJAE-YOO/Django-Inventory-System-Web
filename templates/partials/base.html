@@ -18,7 +18,7 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js"></script>
 
     <!--Custome CSS-->
-    <link rel="stylesheet" href="{% static 'style.css' %}">
+    <link rel="stylesheet" href="{% static '/style.css' %}">
     <title>{% block title %}{% endblock %}</title>
 </head>
 
@@ -26,6 +26,10 @@
     {% include 'partials/nav.html' %}
 
     {% include 'partials/topnav.html' %}
+
+    {% block content %}
+
+    {% endblock %}
 
 
     <!-- Optional JavaScript; choose one of the two! -->
