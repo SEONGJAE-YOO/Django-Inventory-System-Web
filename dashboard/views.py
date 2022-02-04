@@ -5,7 +5,7 @@ from django.http import HttpResponse
 
 def index(request):
     #return HttpResponse('<h1> 메인 페이지 </h1>')
-    return render(request, 'index.html') # templates 폴더에서 index.html 불러옴 
+    return render(request, 'dashboard/index.html') # templates 폴더에서 index.html 불러옴 
     
     '''
     예시)
@@ -14,4 +14,4 @@ def index(request):
     '''
 def staff(request):
     #return HttpResponse('관리자 페이지')
-    return render(request, 'staff.html')
+    return render(request, 'dashboard/staff.html')
