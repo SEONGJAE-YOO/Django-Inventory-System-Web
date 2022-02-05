@@ -1,6 +1,6 @@
 from csv import list_dialects
 from django.contrib import admin
-from .models import Product
+from .models import Product, Order
 from django.contrib.auth.models import Group
 
 # 맨위 상단 이름 변경
@@ -14,4 +14,5 @@ class ProductAdmin(admin.ModelAdmin):
 
 
 admin.site.register(Product, ProductAdmin)
+admin.site.register(Order) 
 # admin.site.unregister(Group)  # Group 기능 제거할수 있는 방법
