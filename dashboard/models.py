@@ -17,3 +17,5 @@ class Product(models.Model):
     quantity = models.PositiveIntegerField(null=True)
 
 
+    def __str__(self):   # Product 제품 이름 보이게 설정
+        return f'{self.name}'
