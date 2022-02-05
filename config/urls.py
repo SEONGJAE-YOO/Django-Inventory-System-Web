@@ -15,8 +15,11 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from user import views as user_view
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include('dashboard.urls')) #dashboard 폴더에 urls 파일 경로 설정
+    path('', include('dashboard.urls')), #dashboard 폴더에 urls 파일 경로 설정
+    path('register/', user_view.register, name = 'user-register'),
+
 ]
