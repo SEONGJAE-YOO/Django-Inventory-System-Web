@@ -1,7 +1,8 @@
 # Django-Inventory-System-Web
 Django-Inventory-System-Web / 재고관리시스템 파이썬 웹 프로젝트
 
-
+# 본 프로젝트는 재고관리를 한눈에 볼 수 있게 빅데이터 시각화를 적용했습니다. barplot,Pie chart 를 적용하였고 추후에 더 많은 plot를 적용할 계획입니다. 
+# 가능하다면 인공지능 알고리즘도 추가 할 계획입니다. 
 # 라이브러리 
 
 1. Django version 3.1.7
