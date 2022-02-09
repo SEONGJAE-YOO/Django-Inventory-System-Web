@@ -6,6 +6,7 @@ from django.http import HttpResponse
 from django.contrib.auth.decorators import login_required 
 from .models import Product
 from .forms import ProductForm
+from django.views.decorators.csrf import csrf_exempt
 
 # 데코레이터(decorator)는 @ 붙여서 실행한다.
 # 데커레이터는 다른 함수를 인수로 받는 콜러블(데커레이터된 함수)이다
@@ -45,6 +46,18 @@ def product(request):
     }
     return render(request, 'dashboard/product.html', context)    
 
+
+
+def product_delete(request, pk):
+    item = Product.objects.get(id=pk) 
+    if request.method=='POST':
+        item.delete()
+        return redirect('dashboard-product')
+    return render(request, 'dashboard/product_delete.html') 
+
+
+
 @login_required
 def order(request):
-    return render(request, 'dashboard/order.html')        
+    return render(request, 'dashboard/order.html')   
+
