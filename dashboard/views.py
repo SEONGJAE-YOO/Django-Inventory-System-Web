@@ -33,7 +33,7 @@ def product(request):
     
     #items = Product.objects.raw('SELECT * FROM dashboard_product') # db 가져오기
     if request.method =='POST':
-        form = ProductForm(request.post)
+        form = ProductForm(request.POST)
         if form.is_valid():
             form.save() 
             return redirect('dashboard-product')
@@ -55,6 +55,23 @@ def product_delete(request, pk):
         return redirect('dashboard-product')
     return render(request, 'dashboard/product_delete.html') 
 
+# edit 누르면 이함수 작동함
+def product_update(request, pk):
+    item = Product.objects.get(id=pk)
+    if request.method=='POST':
+        form = ProductForm(request.POST, instance=item)
+        if form.is_valid():
+            form.save()
+            return redirect('dashboard-product')
+    else:
+        form = ProductForm(instance=item)
+
+    context={
+        'form':form, 
+
+
+    }
+    return render(request, 'dashboard/product_update.html',context)
 
 
 @login_required
