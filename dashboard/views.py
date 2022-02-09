@@ -1,10 +1,11 @@
 from multiprocessing import context
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 
 # HttpResponse: 응답에 대한 메타정보를 가지고 있는 객체
 from django.http import HttpResponse
 from django.contrib.auth.decorators import login_required 
 from .models import Product
+from .forms import ProductForm
 
 # 데코레이터(decorator)는 @ 붙여서 실행한다.
 # 데커레이터는 다른 함수를 인수로 받는 콜러블(데커레이터된 함수)이다
@@ -27,9 +28,19 @@ def staff(request):
 
 @login_required
 def product(request):
-    items = Product.objects.all()
+    items = Product.objects.all() # db 가져오기
+    
+    #items = Product.objects.raw('SELECT * FROM dashboard_product') # db 가져오기
+    if request.method =='POST':
+        form = ProductForm(request.post)
+        if form.is_valid():
+            form.save() 
+            return redirect('dashboard-product')
+    else:
+        form = ProductForm()
     context = {
         'items' : items,
+        'form' : form,
 
     }
     return render(request, 'dashboard/product.html', context)    
