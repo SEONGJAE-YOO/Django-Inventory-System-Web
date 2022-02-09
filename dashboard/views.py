@@ -1,3 +1,4 @@
+import imp
 from multiprocessing import context
 from django.shortcuts import render, redirect
 
@@ -7,6 +8,7 @@ from django.contrib.auth.decorators import login_required
 from .models import Product
 from .forms import ProductForm
 from django.views.decorators.csrf import csrf_exempt
+from django.contrib.auth.models import User
 
 # 데코레이터(decorator)는 @ 붙여서 실행한다.
 # 데커레이터는 다른 함수를 인수로 받는 콜러블(데커레이터된 함수)이다
@@ -25,7 +27,20 @@ def index(request):
 @login_required
 def staff(request):
     #return HttpResponse('관리자 페이지')
-    return render(request, 'dashboard/staff.html')
+    workers = User.objects.all()
+    context={
+        'workers':workers
+    }
+    return render(request, 'dashboard/staff.html',context)
+
+
+def staff_detail(request, pk):
+    workers = User.objects.get(id=pk)
+    context={
+        'workers':workers,
+    } 
+    return render(request, 'dashboard/staff_detail.html',context)
+
 
 @login_required
 def product(request):
