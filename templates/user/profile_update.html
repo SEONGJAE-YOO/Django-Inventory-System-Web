@@ -1,0 +1,33 @@
+{% extends 'partials/base.html' %}
+{% block title %}Login Page {% endblock%}
+{% load crispy_forms_tags %}
+
+{% block content %}
+
+<div class="row my-4">
+    <div class="col-md-4"></div>
+    <div class="col-md-8">
+        <div class="card">
+            <div class="card-header bg-info text-white">
+                Customer Detail Page
+            </div>
+            <div class="row p-3">
+                <div class="col-md-8">
+                    <table class="table table-borderless">
+                        <thead>
+                            <span class="h4">Porfile Information</span class="h4">
+                            <hr>
+                            <form method="GET">
+                                {{user_form|crispy}}
+                                {{profile_form|crispy }}
+
+                            </form>
+                        
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}
