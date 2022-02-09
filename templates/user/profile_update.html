@@ -16,13 +16,31 @@
                     <table class="table table-borderless">
                         <thead>
                             <span class="h4">Porfile Information</span class="h4">
+                            <a class="btn btn-info btn-sm float-right" href="{% url 'user-profile-update' %}">Edit</a >
                             <hr>
-                            <form method="GET">
-                                {{user_form|crispy}}
-                                {{profile_form|crispy }}
-
-                            </form>
-                        
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <th scope="row">Name</th>
+                                <td>{{ user.username }}</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Email</th>
+                                <td>{{ user.email }}</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Phone</th>
+                                <td>{{ user.profile.phone }}</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Address</th>
+                                <td>{{ user.profile.address }}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="col-md-4">
+                    <img class="img-thumbnail" src="{{ user.profile.image.url }}" alt="profile-image">
                 </div>
             </div>
         </div>
