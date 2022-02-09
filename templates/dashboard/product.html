@@ -42,7 +42,7 @@
                         <td>{{ item.category}}</td>
                         <td>{{ item.quantity}}</td>
                         <td>
-                            <a class="btn btn-info btn-sm" href="">Edit</a>
+                            <a class="btn btn-info btn-sm" href="{% url 'dashboard-product-update' item.id %}">Edit</a>
                             <a class="btn btn-danger btn-sm" href="{% url 'dashboard-product-delete' item.id %}">Delete</a>
                         </td>
                     </tr>
