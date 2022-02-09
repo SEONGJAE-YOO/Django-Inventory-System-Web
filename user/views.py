@@ -3,6 +3,7 @@ from django.shortcuts import render,redirect
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import Group
 from .forms import CreateUserForm, UserUpdateForm, ProfileUpdateForm
+from django.views.decorators.csrf import csrf_exempt
 
 
 def register(request):
