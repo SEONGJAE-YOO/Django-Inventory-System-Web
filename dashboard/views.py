@@ -5,7 +5,7 @@ from django.shortcuts import render, redirect
 # HttpResponse: 응답에 대한 메타정보를 가지고 있는 객체
 from django.http import HttpResponse
 from django.contrib.auth.decorators import login_required 
-from .models import Product
+from .models import Product, Order
 from .forms import ProductForm
 from django.views.decorators.csrf import csrf_exempt
 from django.contrib.auth.models import User
@@ -92,5 +92,10 @@ def product_update(request, pk):
 
 @login_required
 def order(request):
-    return render(request, 'dashboard/order.html')   
+    orders = Order.objects.all()
+
+    context={
+        'orders':orders,
+    }
+    return render(request, 'dashboard/order.html',context)   
 
