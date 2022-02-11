@@ -80,9 +80,9 @@ WSGI_APPLICATION = 'config.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'Django-Inventory-System-Web',
+        'NAME': 'django-inventory-system-web',
         'USERNAME': 'YooSeongJae',
-        'HOST': 'localhost',
+        'HOST': 'django-inventory-system-web.crtbq7hvej4v.us-east-1.rds.amazonaws.com',
         'PORT': 3306,
         'PASSWORD': 'tjdwo357!',  # Your Password
     }
