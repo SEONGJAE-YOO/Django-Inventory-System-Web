@@ -1,14 +1,17 @@
 import imp
 from multiprocessing import context
+from pickle import FALSE
 from django.shortcuts import render, redirect
 
 # HttpResponse: 응답에 대한 메타정보를 가지고 있는 객체
 from django.http import HttpResponse
 from django.contrib.auth.decorators import login_required 
 from .models import Product, Order
-from .forms import ProductForm
+from .forms import ProductForm ,OrderForm  #forms 파일에서 함수 불러옴
 from django.views.decorators.csrf import csrf_exempt
 from django.contrib.auth.models import User
+from django.contrib import messages
+
 
 # 데코레이터(decorator)는 @ 붙여서 실행한다.
 # 데커레이터는 다른 함수를 인수로 받는 콜러블(데커레이터된 함수)이다
@@ -16,7 +19,21 @@ from django.contrib.auth.models import User
 @login_required
 def index(request):
     #return HttpResponse('<h1> 메인 페이지 </h1>')
-    return render(request, 'dashboard/index.html') # templates 폴더에서 index.html 불러옴 
+    orders = Order.objects.all()
+    if request.method=='POST':
+        form = OrderForm(request.POST)
+        if form.is_valid():
+            instance = form.save(commit=False)
+            instance.staff = request.user
+            instance.save()
+            return redirect('dashboard-index')
+    else:
+        form = OrderForm()
+    context={
+        'orders':orders,
+        'form':form,
+    }
+    return render(request, 'dashboard/index.html',context) # templates 폴더에서 index.html 불러옴 
     
     '''
     예시)
@@ -51,6 +68,8 @@ def product(request):
         form = ProductForm(request.POST)
         if form.is_valid():
             form.save() 
+            product_name = form.cleaned_data.get('name')
+            messages.success(request,f'{product_name} has been added')
             return redirect('dashboard-product')
     else:
         form = ProductForm()
