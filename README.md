@@ -6,7 +6,7 @@ Django-Inventory-System-Web / 재고관리시스템 파이썬 웹 프로젝트
 
 # 추후 계획
 
-1. user에 따른 product db, order db 수정 할 계획
+1. 지금까지는 Django를 설치하면 자동으로 연동되는 sqlite3에 데이터베이스를 저장해왔다. 하지만 실제 프로젝트에서는 MySQL을 사용할 예정이기 때문에 장고와 MySQL을 연동하는 작업이 필요하다. 따라서 sqlite3 에서 mysql으로 변경할것이다.
 
 2. 가능하다면 연구하여 재고관리시스템 논문을 작성할 계획
 
