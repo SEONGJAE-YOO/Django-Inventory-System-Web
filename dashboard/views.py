@@ -20,6 +20,7 @@ from django.contrib import messages
 def index(request):
     #return HttpResponse('<h1> 메인 페이지 </h1>')
     orders = Order.objects.all()
+    products = Product.objects.all()
     if request.method=='POST':
         form = OrderForm(request.POST)
         if form.is_valid():
@@ -32,6 +33,7 @@ def index(request):
     context={
         'orders':orders,
         'form':form,
+        'products':products,
     }
     return render(request, 'dashboard/index.html',context) # templates 폴더에서 index.html 불러옴 
     
@@ -45,8 +47,10 @@ def index(request):
 def staff(request):
     #return HttpResponse('관리자 페이지')
     workers = User.objects.all()
+    workers_count = workers.count()
     context={
-        'workers':workers
+        'workers':workers,
+        'workers_count':workers_count,
     }
     return render(request, 'dashboard/staff.html',context)
 
@@ -64,6 +68,7 @@ def product(request):
     items = Product.objects.all() # db 가져오기
     
     #items = Product.objects.raw('SELECT * FROM dashboard_product') # db 가져오기
+    workers_count = User.objects.all().count()
     if request.method =='POST':
         form = ProductForm(request.POST)
         if form.is_valid():
@@ -76,7 +81,7 @@ def product(request):
     context = {
         'items' : items,
         'form' : form,
-
+        'workers_count':workers_count,
     }
     return render(request, 'dashboard/product.html', context)    
 
@@ -112,9 +117,10 @@ def product_update(request, pk):
 @login_required
 def order(request):
     orders = Order.objects.all()
-
+    workers_count = User.objects.all().count()
     context={
         'orders':orders,
+        'workers_count':workers_count,
     }
     return render(request, 'dashboard/order.html',context)   
 
