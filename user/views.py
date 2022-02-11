@@ -4,6 +4,7 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import Group
 from .forms import CreateUserForm, UserUpdateForm, ProfileUpdateForm
 from django.views.decorators.csrf import csrf_exempt
+from django.contrib import messages
 
 
 def register(request):
@@ -11,6 +12,8 @@ def register(request):
         form = CreateUserForm(request.POST)
         if form.is_valid(): #유효하면 저장하라
             form.save()
+            username = form.cleaned_data.get('username')
+            messages.success(request, f'Account has been created for {username}. Continue to Log in')
             return redirect('user-login') 
     else:
         form = CreateUserForm()
