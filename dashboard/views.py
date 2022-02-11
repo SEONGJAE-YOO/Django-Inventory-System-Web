@@ -5,7 +5,8 @@ from django.shortcuts import render, redirect
 
 # HttpResponse: 응답에 대한 메타정보를 가지고 있는 객체
 from django.http import HttpResponse
-from django.contrib.auth.decorators import login_required 
+from django.contrib.auth.decorators import login_required
+from pyparsing import Or 
 from .models import Product, Order
 from .forms import ProductForm ,OrderForm  #forms 파일에서 함수 불러옴
 from django.views.decorators.csrf import csrf_exempt
@@ -21,6 +22,10 @@ def index(request):
     #return HttpResponse('<h1> 메인 페이지 </h1>')
     orders = Order.objects.all()
     products = Product.objects.all()
+    orders_count = orders.count()
+    product_count = products.count()
+    workers_count = User.objects.all().count() # db 가져오기
+
     if request.method=='POST':
         form = OrderForm(request.POST)
         if form.is_valid():
@@ -34,6 +39,10 @@ def index(request):
         'orders':orders,
         'form':form,
         'products':products,
+        'product_count':product_count,
+        'workers_count':workers_count,
+        'orders_count':orders_count,
+        
     }
     return render(request, 'dashboard/index.html',context) # templates 폴더에서 index.html 불러옴 
     
@@ -48,9 +57,14 @@ def staff(request):
     #return HttpResponse('관리자 페이지')
     workers = User.objects.all()
     workers_count = workers.count()
+    orders_count = Order.objects.all().count()
+    product_count = Product.objects.all().count() # db 가져오기
+
     context={
         'workers':workers,
         'workers_count':workers_count,
+        'orders_count':orders_count,
+        'product_count':product_count,
     }
     return render(request, 'dashboard/staff.html',context)
 
@@ -66,9 +80,11 @@ def staff_detail(request, pk):
 @login_required
 def product(request):
     items = Product.objects.all() # db 가져오기
-    
+    product_count = items.count()
     #items = Product.objects.raw('SELECT * FROM dashboard_product') # db 가져오기
     workers_count = User.objects.all().count()
+    orders_count = Order.objects.all().count()
+
     if request.method =='POST':
         form = ProductForm(request.POST)
         if form.is_valid():
@@ -82,6 +98,8 @@ def product(request):
         'items' : items,
         'form' : form,
         'workers_count':workers_count,
+        'orders_count':orders_count,
+        'product_count':product_count,
     }
     return render(request, 'dashboard/product.html', context)    
 
@@ -117,10 +135,15 @@ def product_update(request, pk):
 @login_required
 def order(request):
     orders = Order.objects.all()
+    orders_count = orders.count()
     workers_count = User.objects.all().count()
+    product_count = Product.objects.all().count() # db 가져오기
+
     context={
         'orders':orders,
         'workers_count':workers_count,
+        'orders_count':orders_count,
+        'product_count':product_count,
     }
     return render(request, 'dashboard/order.html',context)   
 
