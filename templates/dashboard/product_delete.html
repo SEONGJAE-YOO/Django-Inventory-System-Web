@@ -13,7 +13,7 @@
                 <div class="alert alert-danger">
                     <h4>정말 삭제하실건가요?</h4>
                 </div>
-                <form method="post">
+                <form method="POST">
                     {% csrf_token %}
                     {{ form}}
                     <a class="btn btn-secondary" href="{% url 'dashboard-product' %}">Cancel</a>
