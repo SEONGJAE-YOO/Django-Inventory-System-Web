@@ -26,7 +26,7 @@ SECRET_KEY = 'e0pf0ws@7ijrxzbftvuh)zri43-cjb6)s@$(!($ryu&g^f!c4='
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['13.209.98.239']  # 전체 host 주소 허용
 
 
 # Application definition
@@ -81,10 +81,14 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'DjangoInventorySystemWeb',
-        'USERNAME': 'YooSeongJae',
-        'HOST': 'django-inventory-system-web.c238yawlhe0h.ap-northeast-2.rds.amazonaws.com',
-        'PORT': 3306,
-        'PASSWORD': 'tjdwo357!',  # Your Password
+        'USER': 'YooSeongJae',
+        'PASSWORD': 'tjdwo357!',
+        'HOST':'djangoinventorysystemweb.c238yawlhe0h.ap-northeast-2.rds.amazonaws.com',
+        'PORT':'3306',
+        'OPTIONS': {
+            'init_command': 'SET innodb_strict_mode=1',
+        },
+
     }
 }
 #한국 리전을 AWS 는 "ap-northeast-2"
