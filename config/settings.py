@@ -85,6 +85,10 @@ DATABASES = {
         'PASSWORD': 'tjdwo357!',
         'HOST':'djangoinventorysystemweb.c238yawlhe0h.ap-northeast-2.rds.amazonaws.com',
         'PORT':'3306',
+        'OPTIONS': {
+            'init_command': 'SET innodb_strict_mode=1',
+        },
+
     }
 }
 #한국 리전을 AWS 는 "ap-northeast-2"
