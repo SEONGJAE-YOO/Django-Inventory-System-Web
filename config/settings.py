@@ -26,8 +26,9 @@ SECRET_KEY = 'e0pf0ws@7ijrxzbftvuh)zri43-cjb6)s@$(!($ryu&g^f!c4='
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['13.209.98.239']  # 전체 host 주소 허용
+ALLOWED_HOSTS = ['*']  # 전체 host 주소 허용
 
+# ALLOWED_HOSTS = ['13.209.98.239']  
 
 # Application definition
 
