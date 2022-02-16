@@ -5,3 +5,4 @@ mysqlclient==2.1.0
 pyparsing==3.0.7
 Pillow==9.0.1
 uwsgi==2.0.20
+python==3.6

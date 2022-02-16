@@ -28,7 +28,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['*']  # 전체 host 주소 허용
 
-# ALLOWED_HOSTS = ['13.209.98.239']  
+# ALLOWED_HOSTS = ['13.209.98.239',''ec2-13-209-98-239.ap-northeast-2.compute.amazonaws.com']  
 
 # Application definition
 
