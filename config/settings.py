@@ -80,25 +80,19 @@ WSGI_APPLICATION = 'config.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'DjangoInventorySystemWeb',
+        'NAME': 'django-inventory-system-web',
         'USERNAME': 'YooSeongJae',
-        'HOST': 'http://djangoinventorysystemweb-env.eba-xpvunmmi.ap-northeast-2.elasticbeanstalk.com',
+<<<<<<< HEAD
+        'HOST': 'django-inventory-system-web.crtbq7hvej4v.us-east-1.rds.amazonaws.com',
+=======
+        'HOST': 'django-inventory-system-web.crtbq7hvej4v.us-east-1.rds.amazonaws.com',
+>>>>>>> parent of 4ce9831 (update: AWS 연동하기 위해 setting 수정 (ap-northeast-2b 서울 리전 사용))
         'PORT': 3306,
         'PASSWORD': 'tjdwo357!',  # Your Password
     }
 }
-#한국 리전을 AWS 는 "ap-northeast-2"
-'''
-AZ 정보는 아래와 같이 리전코드의 뒤에 붙여 표현합니다. a zone, b zone, c zone 을 보유하는 서울리전은 아래처럼 표기합니다.
 
-ap-northeast-2a    ap-northeast-2c    ap-northeast-2b(오픈한지 얼마 안됐습니다.)   
- 
-저는 ap-northeast-2b으로 설정하였습니다.
 
-모든 사용자에게 가용영역 a, b, c 가 같은 가용영역은 아닙니다.
-
-말이 좀 어려운데, 예를들어 A 사용자의  a 가용영역이 "용인" 센터라면, B 사용자의 a 가용영역은 "서울" 센터일 수도 있습니다. 아무래도 한 가용영역에 리소스가 몰리는 것을 방지하기 위해서입니다. 
-'''
 # Password validation
 # https://docs.djangoproject.com/en/3.1/ref/settings/#auth-password-validators
 
@@ -124,7 +118,7 @@ CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'Asia/Seoul'
+TIME_ZONE = 'UTC'
 
 USE_I18N = True
 
