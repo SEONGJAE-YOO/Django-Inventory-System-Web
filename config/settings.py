@@ -82,7 +82,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'DjangoInventorySystemWeb',
         'USERNAME': 'YooSeongJae',
-        'HOST': 'django-inventory-system-web.c238yawlhe0h.ap-northeast-2.rds.amazonaws.com',
+        'HOST': 'http://djangoinventorysystemweb-env.eba-xpvunmmi.ap-northeast-2.elasticbeanstalk.com',
         'PORT': 3306,
         'PASSWORD': 'tjdwo357!',  # Your Password
     }
